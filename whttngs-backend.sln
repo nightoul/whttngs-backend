@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAPI", "ExampleAPI\ExampleAPI.csproj", "{7C04D63E-8DAD-4B47-984E-47C84C053276}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whttngs-backend", "whttngs-backend.csproj", "{7C04D63E-8DAD-4B47-984E-47C84C053276}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
