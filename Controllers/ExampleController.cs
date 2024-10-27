@@ -16,7 +16,6 @@ public class ExampleController : ControllerBase
     [HttpGet]
     public IActionResult GetExample()
     {
-        var value = _configurationManager.EnvExample;
         return Ok("Hello from Example API!");
     }
 }
