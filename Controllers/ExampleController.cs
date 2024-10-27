@@ -17,6 +17,6 @@ public class ExampleController : ControllerBase
     public IActionResult GetExample()
     {
         var value = _configurationManager.EnvExample;
-        return Ok($"Environment variables loaded: {value}");
+        return Ok("Hello from Example API!");
     }
 }
