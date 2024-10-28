@@ -1,4 +1,19 @@
+using System.Collections;
+using Microsoft.EntityFrameworkCore;
+using whttngs_backend;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = Environment.GetEnvironmentVariable("MYSQL_URL") ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
+foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+{
+    Console.WriteLine($"{de.Key} = {de.Value}");
+}
+
+
+builder.Services.AddDbContext<WhttngsDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
