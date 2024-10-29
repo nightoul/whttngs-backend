@@ -18,12 +18,11 @@ namespace whttngs_backend
         {
             base.OnModelCreating(modelBuilder);
 
-            // Additional configurations if needed
-            modelBuilder.Entity<Post>()
-                .HasOne<Video>()
+            modelBuilder.Entity<Video>()
+                .HasOne<Post>()
                 .WithMany()
-                .HasForeignKey(p => p.VideoId)
-                .IsRequired(false); // Makes VideoId nullable
+                .HasForeignKey(v => v.PostId)
+                .IsRequired();
         }
     }
 }
