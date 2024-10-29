@@ -21,13 +21,24 @@ public class VisitsController : ControllerBase
         // Capture the visitor's IP from the request
         var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
 
+        var post = new Post
+        {
+            Title = clientIp,
+            Content = clientIp,
+            VimeoUrl = "vimeo",
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _context.Posts.Add(post);
+        _context.SaveChanges();
+
         if (string.IsNullOrEmpty(clientIp))
         {
             return BadRequest("Could not determine the client's IP address.");
         }
 
         // Fetch location data from an IP geolocation service
-        string visitorLocation = "Unknown location";
+        string visitorLocation = "Unknown location1";
         try
         {
             using (var httpClient = new HttpClient())
@@ -39,9 +50,20 @@ public class VisitsController : ControllerBase
                 if (response.IsSuccessStatusCode)
                 {
                     var locationData = await response.Content.ReadFromJsonAsync<dynamic>();
-                    visitorLocation = locationData?.city ?? "Unknown location";
+                    visitorLocation = locationData?.city ?? "Unknown location2";
                 }
             }
+
+            var post2 = new Post
+            {
+                Title = visitorLocation,
+                Content = visitorLocation,
+                VimeoUrl = "vimeo2",
+                CreatedAt = DateTime.UtcNow
+            };
+
+        _context.Posts.Add(post);
+        _context.SaveChanges();
         }
         catch (Exception ex)
         {
