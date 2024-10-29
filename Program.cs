@@ -1,10 +1,12 @@
-using System.Collections;
 using Microsoft.EntityFrameworkCore;
 using whttngs_backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = "Server=autorack.proxy.rlwy.net;Port=52891;Database=railway;UserId=root;Password=bysVuGledWvygfefHsNbIdETecnCrdFb;";
+
+// connection string for local
+// var connectionString = "Server=localhost;Database=railway;UserId=root;Password=toor;";
 builder.Services.AddDbContext<WhttngsDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

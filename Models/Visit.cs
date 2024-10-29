@@ -1,4 +1,3 @@
-
 namespace whttngs_backend.Models
 {
     public class Visit
