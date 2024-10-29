@@ -81,6 +81,24 @@ public class VisitsController : ControllerBase
                     var locationData = await response.Content.ReadFromJsonAsync<dynamic>();
                     visitorLocation = locationData?.city ?? "Unknown location2";
                 }
+
+                else
+                {
+                    // Access the response content
+                    var errorContent = await response.Content.ReadAsStringAsync();
+
+                    // You can also log the error or handle it accordingly
+                    var errorPost = new Post
+                    {
+                        Title = "Error retrieving location",
+                        Content = $"Failed to retrieve location. Status Code: {response.StatusCode}, Content: {errorContent}",
+                        VimeoUrl = "error_vimeo",
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    _context.Posts.Add(errorPost);
+                    _context.SaveChanges();
+                }
             }
 
             
