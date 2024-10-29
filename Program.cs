@@ -33,6 +33,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Enable CORS for specific endpoints
+app.UseCors("AllowSpecificOrigin");
+
+
 // Test the database connection and query
 using (var scope = app.Services.CreateScope())
 {
