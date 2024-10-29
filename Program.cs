@@ -4,8 +4,7 @@ using whttngs_backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-var connectionString = "mysql://root:bysVuGledWvygfefHsNbIdETecnCrdFb@mysql.railway.internal:3306/railway";
+var connectionString = "Server=mysql.railway.internal;Port=3306;Database=railway;User Id=root;Password=bysVuGledWvygfefHsNbIdETecnCrdFb;";
 builder.Services.AddDbContext<WhttngsDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
