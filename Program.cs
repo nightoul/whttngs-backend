@@ -23,6 +23,14 @@ builder.WebHost.UseKestrel()
         serverOptions.ListenAnyIP(int.Parse(port)); // Listen on 0.0.0.0
     });
 
+
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy => policy.WithOrigins("https://whitetongueshangout.me").AllowAnyMethod().AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Test the database connection and query
