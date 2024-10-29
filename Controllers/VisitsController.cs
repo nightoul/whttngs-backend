@@ -28,22 +28,17 @@ public class VisitsController : ControllerBase
     [Route("trackVisitEnd")]
     public IActionResult TrackVisitEnd([FromBody] Visit visit)
     {
-        // Find the existing visit by VisitId
-        var existingVisit = _context.Visits.FirstOrDefault(v => v.VisitId == visit.VisitId);
+        var existingVisit = _context.Visits.FirstOrDefault(v => v.Id == visit.Id);
         
         if (existingVisit == null)
         {
-            // Return 404 if the visit does not exist
             return NotFound("Visit not found.");
         }
 
-        // Update the VisitEndedAt property
         existingVisit.VisitEndedAt = DateTime.UtcNow;
 
-        // Save changes to the database
         _context.SaveChanges();
 
-        // Return the updated visit object
         return Ok(existingVisit);
     }
 }
