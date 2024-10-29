@@ -21,11 +21,17 @@ public class VisitsController : ControllerBase
         // Capture the visitor's IP from the request
         var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
 
+        // Check if the IP address is in IPv6 format and extract the IPv4 address
+        if (clientIp != null && clientIp.StartsWith("::ffff:"))
+        {
+            clientIp = clientIp.Substring(7); // Strip out the "::ffff:" prefix
+        }
+
         var post = new Post
         {
             Title = clientIp,
             Content = clientIp,
-            VimeoUrl = "vimeo",
+            VimeoUrl = "vimeo1",
             CreatedAt = DateTime.UtcNow
         };
 
@@ -62,7 +68,7 @@ public class VisitsController : ControllerBase
                 CreatedAt = DateTime.UtcNow
             };
 
-        _context.Posts.Add(post);
+        _context.Posts.Add(post2);
         _context.SaveChanges();
         }
         catch (Exception ex)
