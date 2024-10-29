@@ -8,8 +8,9 @@ public class ExampleController : ControllerBase
 {
 
     [HttpGet]
+    [Route("hello")]
     public IActionResult GetExample()
     {
-        return Ok("Hello from Example API!");
+        return Ok("Hello from Example API route hello");
     }
 }

@@ -5,6 +5,7 @@ namespace whttngs_backend.Models
         public int VisitId { get; set; }
         public string VisitorIP { get; set; } = string.Empty;
         public string VisitorLocation { get; set; } = string.Empty;
-        public DateTime VisitedAt { get; set; } = DateTime.UtcNow;
+        public DateTime VisitStartedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? VisitEndedAt { get; set; }
     }
 }

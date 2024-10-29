@@ -3,6 +3,8 @@ using whttngs_backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// dotnet ef migrations add InitialCreate
+
 var connectionString = "Server=autorack.proxy.rlwy.net;Port=52891;Database=railway;UserId=root;Password=bysVuGledWvygfefHsNbIdETecnCrdFb;";
 
 // connection string for local
