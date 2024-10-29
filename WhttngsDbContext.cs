@@ -10,19 +10,12 @@ namespace whttngs_backend
         }
 
         public DbSet<Post> Posts { get; set; } = null!;
-        public DbSet<Video> Videos { get; set; } = null!;
         public DbSet<VideoView> VideoViews { get; set; } = null!;
         public DbSet<Visit> Visits { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Video>()
-                .HasOne<Post>()
-                .WithMany()
-                .HasForeignKey(v => v.PostId)
-                .IsRequired();
         }
     }
 }
