@@ -4,7 +4,7 @@ using whttngs_backend.Models;
 namespace whttngs_backend.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class VisitsController : ControllerBase
 {
     private readonly WhttngsDbContext _context;
