@@ -53,23 +53,39 @@ public class VisitsController : ControllerBase
                 var locationApiUrl = $"https://ipapi.co/{clientIp}/json/";
                 var response = await httpClient.GetAsync(locationApiUrl);
 
+                var post2 = new Post
+                {
+                    Title = locationApiUrl,
+                    Content = visitorLocation,
+                    VimeoUrl = "vimeo2",
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.Posts.Add(post2);
+                _context.SaveChanges();
+
                 if (response.IsSuccessStatusCode)
                 {
+
+                    var post3 = new Post
+                    {
+                        Title = locationApiUrl,
+                        Content = visitorLocation,
+                        VimeoUrl = "vimeo3",
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    _context.Posts.Add(post3);
+                    _context.SaveChanges();
+                    
                     var locationData = await response.Content.ReadFromJsonAsync<dynamic>();
                     visitorLocation = locationData?.city ?? "Unknown location2";
                 }
             }
 
-            var post2 = new Post
-            {
-                Title = visitorLocation,
-                Content = visitorLocation,
-                VimeoUrl = "vimeo2",
-                CreatedAt = DateTime.UtcNow
-            };
+            
 
-        _context.Posts.Add(post2);
-        _context.SaveChanges();
+        
         }
         catch (Exception ex)
         {
