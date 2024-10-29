@@ -1,27 +1,29 @@
-using Microsoft.EntityFrameworkCore;
 using whttngs_backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace whttngs_backend
 {
     public class WhttngsDbContext : DbContext
     {
-        public WhttngsDbContext(DbContextOptions<WhttngsDbContext> options)
-            : base(options)
+        public WhttngsDbContext(DbContextOptions<WhttngsDbContext> options) : base(options)
         {
         }
 
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Visit> Visits { get; set; }
+        public DbSet<Post> Posts { get; set; } = null!;
+        public DbSet<Video> Videos { get; set; } = null!;
+        public DbSet<VideoView> VideoViews { get; set; } = null!;
+        public DbSet<Visit> Visits { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Define relationships and any constraints here if needed
-            modelBuilder.Entity<Post>()
-                        .HasMany(p => p.Visits)
-                        .WithOne(v => v.Post)
-                        .HasForeignKey(v => v.PostId);
-
             base.OnModelCreating(modelBuilder);
+
+            // Additional configurations if needed
+            modelBuilder.Entity<Post>()
+                .HasOne<Video>()
+                .WithMany()
+                .HasForeignKey(p => p.VideoId)
+                .IsRequired(false); // Makes VideoId nullable
         }
     }
 }
